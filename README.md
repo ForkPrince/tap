@@ -6,6 +6,8 @@ A collection of Casks and Formulas I needed
 
 - `redream@dev`: The latest development build of [Redream](https://redream.io/)
 - `relunatic-player`: A dedicated app to listen to [Gensokyo Radio](https://gensokyoradio.net/)
+- `peazip`: Free zip/unzip software and rar file extractor
+- `librescore`: A downloader for musescore.com
 
 ## Formula
 
