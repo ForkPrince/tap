@@ -8,6 +8,7 @@ A collection of Casks and Formulas I needed
 - `relunatic-player`: A dedicated app to listen to [Gensokyo Radio](https://gensokyoradio.net/)
 - `peazip`: Free zip/unzip software and rar file extractor
 - `librescore`: A downloader for musescore.com
+- `note-block-studio`: An app to develop note block songs
 
 ## Formula
 
