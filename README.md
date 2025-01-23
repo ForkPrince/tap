@@ -9,6 +9,7 @@ A collection of Casks and Formulas I needed
 - `peazip`: Free zip/unzip software and rar file extractor
 - `librescore`: A downloader for musescore.com
 - `note-block-studio`: An app to develop note block songs
+- `trae`: An adaptive AI IDE that transforms how you work
 
 ## Formula
 
