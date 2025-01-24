@@ -11,7 +11,7 @@ A collection of Casks and Formulas I needed
 - `note-block-studio`: An app to develop note block songs
 - `trae`: An adaptive AI IDE that transforms how you work
 - `aol@aim`: AOL Instant Messenger for modern versions of MacOS
-- `convierto`: A native macOS file converter app 
+- `convierto`: A native MacOS file converter app 
 
 ## Formula
 
