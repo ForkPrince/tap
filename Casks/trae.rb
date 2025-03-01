@@ -1,6 +1,6 @@
 cask "trae" do
-  version "1.0.5431"
-  sha256 "795fa8e59917455d11e416c533694485677043bb6e2b4e0c4df3d4e50b13973b"
+  version "1.0.7650"
+  sha256 "49c75113809c011cfd1908bbbfe86670f1e2b9943fef281d4f1ea9d518840dac"
 
   url "https://lf-cdn.trae.ai/obj/trae-ai-us/pkg/app/releases/stable/#{version}/darwin/Trae-darwin-arm64.dmg"
   name "Trae"
