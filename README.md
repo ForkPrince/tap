@@ -12,6 +12,7 @@ A collection of Casks and Formulas I needed
 - `aol@aim`: AOL Instant Messenger for modern versions of MacOS
 - `convierto`: A native MacOS file converter app
 - `Achico`: A minimal free MacOS local file compressor app
+- `Figura`: A free MacOS native app to remove image backgrounds locally
 
 ## Formula
 
