@@ -10,7 +10,8 @@ A collection of Casks and Formulas I needed
 - `librescore`: A downloader for musescore.com
 - `note-block-studio`: An app to develop note block songs
 - `aol@aim`: AOL Instant Messenger for modern versions of MacOS
-- `convierto`: A native MacOS file converter app 
+- `convierto`: A native MacOS file converter app
+- `Achico`: A minimal free MacOS local file compressor app
 
 ## Formula
 
