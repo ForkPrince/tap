@@ -13,6 +13,7 @@ A collection of Casks and Formulas I needed
 - `convierto`: A native MacOS file converter app
 - `Achico`: A minimal free MacOS local file compressor app
 - `Figura`: A free MacOS native app to remove image backgrounds locally
+- `WiimotePair`: A utility app that pairs Wii Remotes to Macs
 
 ## Formula
 
