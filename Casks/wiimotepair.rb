@@ -8,4 +8,9 @@ cask "wiimotepair" do
   homepage "https://github.com/dolphin-emu/WiimotePair"
 
   app "WiimotePair.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/org.dolphin-emu.WiimotePair",
+    "~/Library/Containers/org.dolphin-emu.WiimotePair",
+  ]
 end
