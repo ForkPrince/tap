@@ -8,4 +8,6 @@ cask "peazip" do
   homepage "https://peazip.github.io"
 
   app "peazip.app"
+
+  zap trash: "~/Library/Saved Application State/com.company.peazip.savedState"
 end
