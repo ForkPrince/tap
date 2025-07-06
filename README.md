@@ -11,9 +11,10 @@ A collection of Casks and Formulas I needed
 - `note-block-studio`: An app to develop note block songs
 - `aol@aim`: AOL Instant Messenger for modern versions of MacOS
 - `convierto`: A native MacOS file converter app
-- `Achico`: A minimal free MacOS local file compressor app
-- `Figura`: A free MacOS native app to remove image backgrounds locally
-- `WiimotePair`: A utility app that pairs Wii Remotes to Macs
+- `achico`: A minimal free MacOS local file compressor app
+- `figura`: A free MacOS native app to remove image backgrounds locally
+- `wiimotepair`: A utility app that pairs Wii Remotes to Macs
+- `vmware-fusion@mirror`: A mirror download of VMware Fusion
 
 ## Formula
 
