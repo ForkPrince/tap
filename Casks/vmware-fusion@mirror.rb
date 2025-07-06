@@ -2,7 +2,7 @@ cask "vmware-fusion@mirror" do
   version "13.6.3,24585314"
   sha256 "0415fc9c995ef959f3905bbd97d4560e6701856d2293b44aed1d9aa23a3b7c41"
 
-  url "https://api.serversmp.xyz/upload/6869eb38cd2a3ec4e9b32fc8.tar",
+  url "https://api.serversmp.xyz/upload/6869eb38cd2a3ec4e9b32fc8.tar"
   name "VMware Fusion"
   desc "Create, manage, and run virtual machines"
   homepage "https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion"
