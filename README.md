@@ -15,6 +15,7 @@ A collection of Casks and Formulas I needed
 - `figura`: A free MacOS native app to remove image backgrounds locally
 - `wiimotepair`: A utility app that pairs Wii Remotes to Macs
 - `vmware-fusion@mirror`: A mirror download of VMware Fusion
+- `beeper@nightly`: A nightly build of [Beeper](https://www.beeper.com/)
 
 ## Formula
 
