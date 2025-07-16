@@ -22,7 +22,7 @@ cask "beeper@nightly" do
   depends_on macos: ">= :big_sur"
   conflicts_with cask: ["beeper"]
 
-  app "Beeper Desktop.app"
+  app "Beeper Nightly.app"
 
   zap trash: [
     "~/Library/Application Support/BeeperTexts",
