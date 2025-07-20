@@ -73,15 +73,14 @@ jobs:
           done
       
           if [[ "$updated" -eq 1 ]]; then
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git add Formula/*.rb Casks/*.rb 2>/dev/null || true
-            if git diff --cached --quiet; then
-              echo "ℹ️  No changes to commit"
-            else
+            git add -A
+  
+            if ! git diff --cached --quiet; then
               git commit -m "chore: auto-update formulas and casks"
-              git push origin HEAD
+              git push
               echo "🚀 Changes pushed successfully"
+            else
+              echo "ℹ️  No changes to commit"
             fi
           else
             echo "✅ All formulas and casks are up to date."
