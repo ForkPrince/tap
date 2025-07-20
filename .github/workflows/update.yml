@@ -1,0 +1,64 @@
+name: Update Tap
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    env:
+      HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Setup Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Tap this repo
+        run: brew tap-local .
+
+      - name: Check and update formulas and casks
+        run: |
+          updated=0
+
+          for file in Formula/*.rb Casks/*.rb; do
+            name=$(basename "$file" .rb)
+            echo "Checking $name..."
+            result=$(brew livecheck --json "$name" 2>/dev/null || true)
+
+            current=$(echo "$result" | jq -r '.[0].version.current')
+            latest=$(echo "$result" | jq -r '.[0].version.latest')
+
+            if [[ "$current" != "$latest" && "$latest" != "null" ]]; then
+              echo "Updating $name: $current → $latest"
+              if [[ "$file" == Formula/* ]]; then
+                brew bump-formula-pr "$name" --write-only --no-audit --no-browse || true
+              else
+                brew bump-cask-pr "$name" --write-only --no-audit --no-browse || true
+              fi
+              updated=1
+            fi
+          done
+
+          if [[ "$updated" -eq 1 ]]; then
+            git add Formula/*.rb Casks/*.rb
+            git commit -m "chore: auto-update formulas and casks"
+            git push origin HEAD
+          else
+            echo "✅ All formulas and casks are up to date."
+          fi
