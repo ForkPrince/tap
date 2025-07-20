@@ -30,7 +30,7 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@master
 
       - name: Tap Repo
-        run: brew tap-local .
+        run: brew tap ${{ github.repository_owner }}/$(basename $GITHUB_REPOSITORY) .
 
       - name: Check/Update Tap
         run: |
