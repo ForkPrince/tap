@@ -32,7 +32,7 @@ jobs:
       - name: Tap this repo
         run: brew tap-local .
 
-      - name: Check and update formulas and casks
+      - name: Check/Update Tap
         run: |
           updated=0
 
