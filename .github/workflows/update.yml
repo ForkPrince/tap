@@ -37,24 +37,24 @@ jobs:
           updated=0
           for file in Formula/*.rb Casks/*.rb; do
             name=$(basename "$file" .rb)
-            echo "Checking $name..."
-      
+            echo "🔍 Checking $name..."
+
             result=$(brew livecheck --json "$name" 2>/dev/null | jq '.[0]' 2>/dev/null || echo '{}')
-      
+
             if [[ "$result" == "{}" ]]; then
-              echo "⚠️  Livecheck failed for $name, skipping..."
+              echo "⚠️ Livecheck failed for $name, skipping..."
               continue
             fi
-      
+
             current=$(echo "$result" | jq -r '.version.current // empty')
             latest=$(echo "$result" | jq -r '.version.latest // empty')
-      
+
             if [[ -z "$current" || -z "$latest" || "$current" == "$latest" || "$latest" == "null" ]]; then
               continue
             fi
-      
-            echo "Updating $name: $current → $latest"
-      
+
+            echo "⬆️ Updating $name: $current → $latest"
+
             if [[ "$file" == Formula/* ]]; then
               if brew bump-formula-pr "$name" --version="$latest" --write-only --no-audit --no-browse 2>/dev/null; then
                 echo "✅ Successfully updated formula $name"
@@ -71,12 +71,12 @@ jobs:
               fi
             fi
           done
-      
+
           if [[ "$updated" -eq 1 ]]; then
             git add -A
-  
+
             if ! git diff --cached --quiet; then
-              git commit -m "chore: auto-update formulas and casks"
+              git commit -m "Update packages: $(date +'%Y-%m-%d %H:%M:%S')"
               git push
               echo "🚀 Changes pushed successfully"
             else
