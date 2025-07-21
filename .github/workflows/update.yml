@@ -10,8 +10,7 @@ jobs:
     runs-on: macos-latest
 
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read
 
     steps:
       - name: Checkout repo
@@ -19,6 +18,11 @@ jobs:
 
       - name: Setup Homebrew
         uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Configure Git user
+        uses: Homebrew/actions/git-user-config@master
+        with:
+          username: BrewTestBot
 
       - name: Tap Repo
         run: brew tap ${{ github.repository_owner }}/$(basename $GITHUB_REPOSITORY)
