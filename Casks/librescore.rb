@@ -4,7 +4,7 @@ cask "librescore" do
 
   url "https://github.com/LibreScore/app-librescore/releases/download/v#{version}/LibreScore.dmg"
   name "LibreScore"
-  desc "The open source (GPLv3), serverless (IPFS-based), offline-first, and totally free alternative to musescore.com"
+  desc "Open source, serverless, offline-first alternative to MuseScore.com"
   homepage "https://github.com/LibreScore/app-librescore"
 
   app "LibreScore.app"
