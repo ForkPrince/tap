@@ -29,16 +29,11 @@ jobs:
 
       - name: Get packages
         run: |
-          FORMULAE=$(find Formula -name '*.rb' -exec basename {} .rb \; | sort)
-          CASKS=$(find Casks -name '*.rb' -exec basename {} .rb \; | sort)
+          FORMULAE=$(find Formula -name '*.rb' -exec basename {} .rb \; | sort | paste -sd' ' -)
+          CASKS=$(find Casks -name '*.rb' -exec basename {} .rb \; | sort | paste -sd' ' -)
 
-          echo "FORMULAE<<EOF" >> $GITHUB_ENV
-          echo "$FORMULAE" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-
-          echo "CASKS<<EOF" >> $GITHUB_ENV
-          echo "$CASKS" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo "FORMULAE=$FORMULAE" >> $GITHUB_ENV
+          echo "CASKS=$CASKS" >> $GITHUB_ENV
 
       - name: Bump packages
         uses: Homebrew/actions/bump-packages@main
