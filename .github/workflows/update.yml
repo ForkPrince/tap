@@ -7,22 +7,15 @@ on:
 
 jobs:
   update:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     permissions:
       contents: write
-
-    env:
-      HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      pull-requests: write
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
-      - name: Setup Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Setup Homebrew
         uses: Homebrew/actions/setup-homebrew@master
@@ -30,56 +23,23 @@ jobs:
       - name: Tap Repo
         run: brew tap ${{ github.repository_owner }}/$(basename $GITHUB_REPOSITORY) .
 
-      - name: Check/Update Tap
+      - name: Get packages
         run: |
-          updated=0
-          for file in Formula/*.rb Casks/*.rb; do
-            name=$(basename "$file" .rb)
-            echo "🔍 Checking $name..."
+          FORMULAE=$(find Formula -name '*.rb' -exec basename {} .rb \; | sort)
+          CASKS=$(find Casks -name '*.rb' -exec basename {} .rb \; | sort)
 
-            result=$(brew livecheck --json "$name" 2>/dev/null | jq '.[0]' 2>/dev/null || echo '{}')
+          echo "FORMULAE<<EOF" >> $GITHUB_ENV
+          echo "$FORMULAE" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
-            if [[ "$result" == "{}" ]]; then
-              echo "⚠️ Livecheck failed for $name, skipping..."
-              continue
-            fi
+          echo "CASKS<<EOF" >> $GITHUB_ENV
+          echo "$CASKS" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
-            current=$(echo "$result" | jq -r '.version.current // empty')
-            latest=$(echo "$result" | jq -r '.version.latest // empty')
-
-            if [[ -z "$current" || -z "$latest" || "$current" == "$latest" || "$latest" == "null" ]]; then
-              continue
-            fi
-
-            echo "⬆️ Updating $name: $current → $latest"
-
-            if [[ "$file" == Formula/* ]]; then
-              if brew bump-formula-pr "$name" --version="$latest" --write-only --no-audit --no-browse 2>/dev/null; then
-                echo "✅ Successfully updated formula $name"
-                updated=1
-              else
-                echo "❌ Failed to update formula $name"
-              fi
-            else
-              if brew bump-cask-pr "$name" --version="$latest" --write-only --no-audit --no-browse 2>/dev/null; then
-                echo "✅ Successfully updated cask $name"
-                updated=1
-              else
-                echo "❌ Failed to update cask $name"
-              fi
-            fi
-          done
-
-          if [[ "$updated" -eq 1 ]]; then
-            git add -A
-
-            if ! git diff --cached --quiet; then
-              git commit -m "Update packages: $(date +'%Y-%m-%d %H:%M:%S')"
-              git push
-              echo "🚀 Changes pushed successfully"
-            else
-              echo "ℹ️  No changes to commit"
-            fi
-          else
-            echo "✅ All formulas and casks are up to date."
-          fi
+      - name: Bump packages
+        uses: Homebrew/actions/bump-packages@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          formulae: ${{ env.FORMULAE }}
+          casks: ${{ env.CASKS }}
+          fork: false
