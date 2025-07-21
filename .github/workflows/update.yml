@@ -21,7 +21,7 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@master
 
       - name: Tap Repo
-        run: brew tap ${{ github.repository_owner }}/$(basename $GITHUB_REPOSITORY) .
+        run: brew tap ${{ github.repository_owner }}/$(basename $GITHUB_REPOSITORY)
 
       - name: Get packages
         run: |
