@@ -12,4 +12,10 @@ cask "xmcl" do
   homepage "https://xmcl.app"
 
   app "X Minecraft Launcher.app"
+
+  zap trash: [
+    "~/Library/Application Support/xmcl",
+    "~/Library/Preferences/xmcl.plist",
+    "~/Library/Saved Application State/xmcl.savedState",
+  ]
 end
