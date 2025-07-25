@@ -17,6 +17,7 @@ A collection of Casks and Formulas I needed
 - `vmware-fusion@mirror`: A mirror download of VMware Fusion
 - `beeper@nightly`: A nightly build of [Beeper](https://www.beeper.com/)
 - `xmcl`: An Open Source Minecraft Launcher with Modern UX
+- `tablift`: Utility that auto-restore minimized app windows with ⌘+Tab
 
 ## Formula
 
