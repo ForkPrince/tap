@@ -3,6 +3,11 @@ name: Auto-merge PRs
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'Pull request number to merge'
+        required: false
 
 permissions:
   contents: write
@@ -13,12 +18,36 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor == 'Prince527Github'
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
       - name: Auto-merge PR
-        uses: pascalgn/automerge-action@v0.16.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/github-script@v7
         with:
-          mergeMethod: squash
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = process.env.PR_NUMBER 
+              ? parseInt(process.env.PR_NUMBER) 
+              : context.payload.pull_request?.number;
+
+            if (!prNumber) {
+              console.log("No PR number found.");
+              return;
+            }
+
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber
+            });
+
+            if (pr.state === "open" && !pr.draft) {
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber,
+                merge_method: "squash"
+              });
+              console.log(`PR #${prNumber} merged.`);
+            } else {
+              console.log(`PR #${prNumber} is not ready to be merged.`);
+            }
+        env:
+          PR_NUMBER: ${{ inputs.pr_number }}
