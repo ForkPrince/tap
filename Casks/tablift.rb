@@ -5,7 +5,7 @@ cask "tablift" do
   url "https://github.com/turtle-key/TabLift/releases/download/v#{version}/TabLift.dmg",
       verified: "github.com/turtle-key/TabLift/"
   name "Tablift"
-  desc "Utility that auto-restore minimized app windows with+Tab"
+  desc "Utility that auto-restore minimized app windows"
   homepage "https://tablift.mihai.sh/"
 
   app "TabLift.app"
