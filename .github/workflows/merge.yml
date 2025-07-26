@@ -23,31 +23,26 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const prNumber = process.env.PR_NUMBER 
-              ? parseInt(process.env.PR_NUMBER) 
-              : context.payload.pull_request?.number;
-
-            if (!prNumber) {
-              console.log("No PR number found.");
-              return;
-            }
+            const number = process.env.PR_NUMBER ? parseInt(process.env.PR_NUMBER) : context.payload.pull_request?.number;
+            if (!number) return console.log("No PR number found.");
 
             const { data: pr } = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: prNumber
+              pull_number: number
             });
 
             if (pr.state === "open" && !pr.draft) {
               await github.rest.pulls.merge({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                pull_number: prNumber,
+                pull_number: number,
                 merge_method: "squash"
               });
-              console.log(`PR #${prNumber} merged.`);
+
+              console.log(`PR #${number} merged.`);
             } else {
-              console.log(`PR #${prNumber} is not ready to be merged.`);
+              console.log(`PR #${number} is not ready to be merged.`);
             }
         env:
           PR_NUMBER: ${{ inputs.pr_number }}
