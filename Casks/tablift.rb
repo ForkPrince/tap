@@ -1,6 +1,6 @@
 cask "tablift" do
-  version "1.7"
-  sha256 "baa5e3e206136d92b455f9440b3260966a8ce0320ea5d69e5f687babfda2f3b4"
+  version "1.8"
+  sha256 "99467c250847e61c0b8dac866369fe448dbcf141162195306a8c1f881938e1b8"
 
   url "https://github.com/turtle-key/TabLift/releases/download/v#{version}/TabLift.dmg",
       verified: "github.com/turtle-key/TabLift/"
