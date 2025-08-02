@@ -19,7 +19,6 @@ A collection of Casks and Formulas I needed
 - `xmcl`: An Open Source Minecraft Launcher with Modern UX
 - `tablift`: Utility that auto-restore minimized app windows with ⌘+Tab
 - `tinyrdm`: Modern and colorful Redis GUI client
-- `geode`: The ultimate Geometry Dash modding framework
 
 ## Formula
 
