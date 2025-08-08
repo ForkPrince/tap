@@ -8,8 +8,8 @@ cask "xmcl" do
   url "https://github.com/Voxelum/x-minecraft-launcher/releases/download/v#{version}/xmcl-#{version}-#{arch}.dmg",
       verified: "github.com/Voxelum/x-minecraft-launcher/"
   name "X Minecraft Launcher"
-  desc "An Open Source Minecraft Launcher with Modern UX. Provides a Disk Efficient way to manage all your Mods!"
-  homepage "https://xmcl.app"
+  desc "Open Source Minecraft Launcher with Modern UX."
+  homepage "https://xmcl.app/"
 
   app "X Minecraft Launcher.app"
 
