@@ -1,14 +1,14 @@
 cask "xmcl" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.51.1"
-  sha256 arm:   "4856934ed9d04bbf118313a142fc5569096d89c535eddf91f945b92fbab637a9",
-         intel: "26b64fa3d34f86ec3afd197d16afce28e0f36bcfbda75e79c01a0f367ff40fe9"
+  version "0.51.3"
+  sha256 arm:   "dc3ba9ba3e8c11230cf24acaca714ea0ed124b3667aab116b915303840b7a965",
+         intel: "95d99fe894b82c5e6cfe85c09ee5a4ae5c8d2be1a4278c66450fc6fa1049e99d"
 
   url "https://github.com/Voxelum/x-minecraft-launcher/releases/download/v#{version}/xmcl-#{version}-#{arch}.dmg",
       verified: "github.com/Voxelum/x-minecraft-launcher/"
   name "X Minecraft Launcher"
-  desc "Open Source Minecraft Launcher with Modern UX."
+  desc "Open Source Minecraft Launcher with Modern UX"
   homepage "https://xmcl.app/"
 
   app "X Minecraft Launcher.app"
